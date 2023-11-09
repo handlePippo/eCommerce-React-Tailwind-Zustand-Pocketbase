@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+    font-family: 'Raleway', sans-serif;
+    @apply bg-gradient-to-tl from-slate-900 to-blue-500 text-white bg-fixed h-full;
+}
+
+.title {
+    @apply font-extrabold my-3 text-white text-[2rem] text-center 2xl:text-[10rem] 2xl:fixed 2xl:bottom-[10rem] 2xl:z-0 2xl:rotate-[270deg] 2xl:w-96 2xl:-left-12 2xl:opacity-30 2xl:pointer-events-none
+}
+
+textarea,
+input[type="number"],
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    @apply text-black
+}
+
+textarea.error,
+input[type="number"].error,
+input[type="email"].error,
+input[type="password"].error,
+input[type="text"].error {
+    @apply bg-red-300
+}
+
+.page {
+    @apply max-w-screen-lg mx-auto pt-24 px-3
+}
+
+.page-sm {
+    @apply max-w-screen-sm mx-auto
+}
+
+.btn {
+    @apply px-5 py-2 rounded-full m-1 font-bold text-sm text-center disabled:opacity-30 transition
+}
+
+.btn.dark {
+    @apply bg-slate-700 hover:bg-slate-900 text-white
+}
+
+.btn.danger {
+    @apply bg-red-400 hover:bg-red-500 text-white
+}
+
+.btn.primary {
+    @apply bg-white hover:bg-gray-300 text-black
+}
+
+.btn.accent {
+    @apply bg-pink-500 hover:bg-pink-600 text-white
+}
+
+.btn.success {
+    @apply bg-green-500 hover:bg-green-700 text-white
+}
+
+.btn.outline {
+    @apply border border-white;
+}
+
+.btn.lg {
+    @apply text-2xl
+}
+
+
+.table-auto th,
+.table-auto td {
+    @apply border-b-blue-500 py-4 px-2
+}
+
+.table-auto.hover tr:hover {
+    @apply bg-blue-500
+}
