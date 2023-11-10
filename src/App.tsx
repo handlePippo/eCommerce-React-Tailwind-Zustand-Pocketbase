@@ -7,8 +7,8 @@ import {
   ShopPage,
   ThanksPage,
   CMSProductPage,
-} from "./Routes";
-import { Navbar, Footer } from "./Components";
+} from "@/Routes/index";
+import { Navbar, Footer } from "@/Components/index";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
