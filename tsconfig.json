@@ -21,10 +21,12 @@
     "noFallthroughCasesInSwitch": true,
 
     "paths": {
-      "@/Components/*": ["./src/Components/*"],
-      "@/Routes/*": ["./src/Routes/*"],
-      "@/Model/*": ["./src/Model/*"],
-      "@/Services/*": ["./src/Services/*"]
+      "@/Components/*": ["./src/Components/index"],
+      "@/Routes/*": ["./src/Routes/index"],
+      "@/Model/*": ["./src/Model/index"],
+      "@/Services/*": ["./src/Services/index"],
+      "@/Constants/*": ["./src/Constants/index"],
+      "@/Errors/*": ["./src/Errors/index"]
     }
   },
   "include": ["src"],

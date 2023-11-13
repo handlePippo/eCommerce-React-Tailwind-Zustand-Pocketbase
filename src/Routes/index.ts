@@ -1,4 +1,3 @@
-import RouteErrorPage from "./Errors";
 import CartPage from "./Cart";
 import CheckoutPage from "./Checkout";
 import CMSPage from "./Cms";
@@ -9,7 +8,6 @@ import ShopPage from "./Shop";
 import ThanksPage from "./Checkout/ThanksPage";
 
 export {
-  RouteErrorPage,
   CartPage,
   CheckoutPage,
   CMSPage,
