@@ -1,6 +1,5 @@
 import { Button } from "@/Components/";
 import { Product } from "@/Model/Product";
-import React from "react";
 
 export type ProductCardProps = {
   product: Partial<Product>;

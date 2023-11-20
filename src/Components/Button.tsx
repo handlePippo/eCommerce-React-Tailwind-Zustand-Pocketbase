@@ -2,7 +2,8 @@ export type ButtonProps = {
   name: string;
   className: string;
   disabled: boolean;
-  onClick: (params: unknown) => unknown;
+  type: "button" | "submit";
+  onClick?: (params: unknown) => unknown;
 };
 
 function Button(props: ButtonProps) {
@@ -11,6 +12,7 @@ function Button(props: ButtonProps) {
       className={props.className}
       disabled={props.disabled}
       onClick={props.onClick}
+      type={props.type}
     >
       {props.name}
     </button>
@@ -20,6 +22,7 @@ function Button(props: ButtonProps) {
 Button.defaultProps = {
   disabled: false,
   className: "btn outline",
+  type: "submit",
 };
 
 export default Button;

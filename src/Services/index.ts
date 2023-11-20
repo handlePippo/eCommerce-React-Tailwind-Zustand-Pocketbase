@@ -1,12 +1,12 @@
 import { useCart } from "./Cart/useCart";
-import { useCartPanel } from "./Cart/useCartPanel";
+import { useCartOverlay } from "./Cart/useCartOverlay";
 import { selectCartList } from "./Cart/cart.selectors";
 import { selectCartIsEmpty } from "./Cart/cart.selectors";
 import { selectCartTotalCost } from "./Cart/cart.selectors";
 import { selectCartTotalItem } from "./Cart/cart.selectors";
 
 export {
-  useCartPanel,
+  useCartOverlay as useCartPanel,
   useCart,
   selectCartList,
   selectCartIsEmpty,

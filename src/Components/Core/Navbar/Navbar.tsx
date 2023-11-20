@@ -1,7 +1,11 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { Button, CartPanel } from "@/Components/";
-import { selectCartTotalItem, useCart, useCartPanel } from "@/Services/";
+import {
+  selectCartIsEmpty,
+  selectCartTotalItem,
+  useCart,
+  useCartPanel,
+} from "@/Services/";
 import logo from "../../../assets/logo.png";
 import useIsActive from "../../../Hooks/useIsActive";
 
@@ -10,8 +14,7 @@ export default function Navbar() {
   const toggle = useCartPanel((s) => s.toggle);
   const open = useCartPanel((s) => s.open);
   const totalCartItems = useCart(selectCartTotalItem);
-
-  console.log(totalCartItems);
+  const isEmpty = useCart(selectCartIsEmpty);
 
   return (
     <div className='fixed top-0 left-0 right-0 shadow-2xl z-10'>
@@ -28,6 +31,7 @@ export default function Navbar() {
             className='btn accent lg'
             name={`Cart: ${totalCartItems}`}
             onClick={toggle}
+            disabled={isEmpty}
           />
         </div>
       </div>
