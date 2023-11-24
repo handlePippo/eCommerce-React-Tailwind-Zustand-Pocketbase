@@ -1,18 +1,37 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useCallback } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import Button from "./Button";
+import { useAuth } from "../Services";
+import { IfLogged } from "@/Components/";
 
 export default function Footer() {
+  const navigate = useNavigate();
+  const logout = useAuth((s) => s.logout);
+
+  const handleLogout = useCallback(() => {
+    logout();
+    navigate("/login");
+  }, [logout, navigate]);
+
   return (
     <>
       <div className='fixed bottom-2 right-2 p-5'>
-        <NavLink to='login' className='btn accent lg'>
-          LOGIN
-        </NavLink>
         <NavLink to='cms' className='btn accent lg'>
           CMS
         </NavLink>
-        <Button className='btn primary lg' name='Logout' onClick={() => null} />
+        <IfLogged
+          else={
+            <NavLink to='login' className='btn accent lg'>
+              LOGIN
+            </NavLink>
+          }
+        >
+          <Button
+            className='btn primary lg'
+            name='Logout'
+            onClick={handleLogout}
+          />
+        </IfLogged>
       </div>
     </>
   );

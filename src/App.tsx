@@ -1,3 +1,4 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import {
   CMSOrderPage,
   CMSPage,
@@ -8,8 +9,7 @@ import {
   ThanksPage,
   CMSProductPage,
 } from "@/Routes/index";
-import { Navbar, Footer } from "@/Components/index";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Navbar, Footer, PrivateRoute } from "@/Components/";
 
 function App() {
   return (
@@ -22,7 +22,15 @@ function App() {
           <Route path='checkout' element={<CheckoutPage />} />
           <Route path='login' element={<LoginPage />} />
           <Route path='thankyou' element={<ThanksPage />} />
-          <Route path='cms' element={<CMSPage />}>
+
+          <Route
+            path='cms'
+            element={
+              <PrivateRoute>
+                <CMSPage />
+              </PrivateRoute>
+            }
+          >
             <Route path='products' element={<CMSProductPage />} />
             <Route path='orders' element={<CMSOrderPage />} />
             <Route index element={<Navigate to='products' />} />

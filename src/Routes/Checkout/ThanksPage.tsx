@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 
-export function ThanksPage() {
+export default function ThanksPage() {
   return (
     <div>
       <div className='text-3xl text-center'>Thank you your order</div>
