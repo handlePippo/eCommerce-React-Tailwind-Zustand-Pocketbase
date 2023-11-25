@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo, FormEvent } from "react";
-import { useAuth } from "../../Services/Auth";
+import { useAuth } from "@/Services/";
 
 export type UserDataLogin = {
   username: string;

@@ -26,7 +26,8 @@
       "@/Model/*": ["./src/Model/index"],
       "@/Services/*": ["./src/Services/index"],
       "@/Constants/*": ["./src/Constants/index"],
-      "@/Errors/*": ["./src/Errors/index"]
+      "@/Errors/*": ["./src/Errors/index"],
+      "@/Hooks/*": ["./src/Hooks/index"]
     }
   },
   "include": ["src"],

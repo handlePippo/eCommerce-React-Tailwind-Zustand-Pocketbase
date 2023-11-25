@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import Button from "./Button";
-import { useAuth } from "../Services";
-import { IfLogged } from "@/Components/";
+import { useAuth } from "@/Services/";
+import { IfLogged, Button } from "@/Components/";
 
 export default function Footer() {
   const navigate = useNavigate();

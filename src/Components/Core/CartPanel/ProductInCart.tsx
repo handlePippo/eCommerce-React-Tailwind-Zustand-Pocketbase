@@ -1,5 +1,3 @@
-import React from "react";
-
 export type ProductInCartProps = {
   name: string;
   price: number;

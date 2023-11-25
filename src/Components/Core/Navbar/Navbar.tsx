@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { useIsActive } from "@/Hooks/";
 import { Button, CartPanel } from "@/Components/";
 import {
   selectCartIsEmpty,
@@ -7,7 +8,6 @@ import {
   useCartPanel,
 } from "@/Services/";
 import logo from "../../../assets/logo.png";
-import useIsActive from "../../../Hooks/useIsActive";
 
 export default function Navbar() {
   const { isActiveLabel } = useIsActive();

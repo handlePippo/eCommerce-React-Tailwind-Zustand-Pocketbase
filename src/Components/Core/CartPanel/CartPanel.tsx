@@ -1,7 +1,5 @@
-import React from "react";
-import { Button } from "../..";
 import { useNavigate } from "react-router-dom";
-import ProductInCart from "./ProductInCart";
+import { Button, ProductInCart } from "@/Components/";
 import {
   selectCartList,
   selectCartTotalCost,
