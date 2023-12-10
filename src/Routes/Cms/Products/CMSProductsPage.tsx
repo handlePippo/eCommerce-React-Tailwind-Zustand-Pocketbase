@@ -1,31 +1,43 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useReducer } from "react";
+import { useEffect } from "react";
 import { Button, Loader } from "@/Components/";
-import { PB_Get } from "../../../Services/Products/products.api";
-import {
-  productsReducer,
-  initialState,
-} from "../../../Services/Products/products.reducer";
+import { useProductsService } from "@/Hooks/";
+import { ApiError } from "@/Errors/";
+import CMSProductList from "./CMSProductList";
+import CMSProductForm from "./CMSProductForm";
 
 export default function CMSProductPage() {
-  const [state, dispatch] = useReducer(productsReducer, initialState);
+  const { actions, state } = useProductsService();
 
-  const handleGetProducts = useCallback(async () => {
-    dispatch({ type: "pending", payload: true });
-
-    const { items } = await PB_Get();
-
-    dispatch({ type: "getProductsSuccess", payload: items });
+  useEffect(() => {
+    actions.handleGetProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       <h1 className='title'>CMS</h1>
-
       <hr className='my-8' />
       {state.pending && <Loader />}
-
-      <Button name='Click' onClick={handleGetProducts} />
+      {state.error && <ApiError error={state.error} />}
+      <div className='mt-12'>
+        <CMSProductForm
+          activeItem={state.activeItem}
+          onCloseMenu={actions.resetActiveItem}
+          onAddProduct={actions.handleAddProduct}
+          onEditProduct={actions.handleUpdateProduct}
+        />
+        <CMSProductList
+          products={state.products}
+          activeItem={state.activeItem}
+          onEditItem={actions.setActiveItem}
+          onDeleteProduct={actions.handleDeleteProducts}
+        />
+        <Button
+          className='btn primary'
+          name='ADD NEW'
+          onClick={() => actions.setActiveItem({})}
+        />
+      </div>
     </div>
   );
 }

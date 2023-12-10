@@ -22,7 +22,7 @@ function Button(props: ButtonProps) {
 Button.defaultProps = {
   disabled: false,
   className: "btn outline",
-  type: "submit",
+  type: "button",
 };
 
 export default Button;

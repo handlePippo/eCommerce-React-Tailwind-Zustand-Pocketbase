@@ -25,6 +25,11 @@ export type SetActiveProductSuccess = {
   payload: Partial<Product> | null;
 };
 
+export type ResetActiveProductSuccess = {
+  type: "resetActiveProductSuccess";
+  payload: null;
+};
+
 export type Pending = {
   type: "pending";
   payload: boolean;
@@ -41,5 +46,6 @@ export type ProductsActions =
   | UpdateProductsSuccess
   | DeleteProductsSuccess
   | SetActiveProductSuccess
+  | ResetActiveProductSuccess
   | Pending
   | Error;

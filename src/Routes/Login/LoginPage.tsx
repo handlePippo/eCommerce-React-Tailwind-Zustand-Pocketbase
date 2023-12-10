@@ -44,7 +44,7 @@ export default function LoginPage() {
           disabled={!validations.isValid}
         />
       </form>
-      {error && <ApiError text='Errore di autenticazione' />}
+      {error && <ApiError error='Errore di autenticazione' />}
     </div>
   );
 }
