@@ -1,17 +1,21 @@
-import { useState } from "react";
-
 export type TextAreaProps = {
+  value: string;
   about: string;
+  name: string;
+  className: string;
   placeholder: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 };
 
 function TextArea(props: TextAreaProps) {
-  const [text, setText] = useState("");
-
   return (
     <textarea
-      value={text}
-      onChange={(e) => setText(e.target.value)}
+      className={props.className}
+      name={props.name}
+      value={props.value}
+      onChange={props.onChange}
       placeholder={props.placeholder}
       about={props.about}
     />

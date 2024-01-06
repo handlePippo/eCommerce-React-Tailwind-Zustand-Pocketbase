@@ -1,5 +1,5 @@
 export type ApiErrorPropsType = {
-  error: string;
+  error?: string;
 };
 
 function ApiError(props: ApiErrorPropsType) {
@@ -11,7 +11,7 @@ function ApiError(props: ApiErrorPropsType) {
 }
 
 ApiError.defaultProps = {
-  text: "A Server error occurs! Please retry.",
+  error: "A Server error occurs! Please retry.",
 };
 
 export default ApiError;

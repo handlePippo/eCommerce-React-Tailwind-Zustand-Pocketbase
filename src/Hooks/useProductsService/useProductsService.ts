@@ -4,10 +4,10 @@ import {
   initialState,
 } from "../../Services/Products/products.reducer";
 import {
-  PB_Add,
-  PB_Delete,
-  PB_Get,
-  PB_Update,
+  PB_AddProduct,
+  PB_DeleteProduct,
+  PB_GetProducts,
+  PB_UpdateProduct,
 } from "../../Services/Products/products.api";
 import { Product } from "@/Model/";
 
@@ -17,7 +17,7 @@ export default function useProductsService() {
   const handleGetProducts = useCallback(async () => {
     dispatch({ type: "pending", payload: true });
     try {
-      const { items } = await PB_Get();
+      const { items } = await PB_GetProducts();
       dispatch({ type: "getProductsSuccess", payload: items });
     } catch (error) {
       dispatch({ type: "error", payload: "Prodotti non caricati" });
@@ -27,7 +27,7 @@ export default function useProductsService() {
   const handleDeleteProducts = useCallback(async (id: string) => {
     dispatch({ type: "pending", payload: true });
     try {
-      await PB_Delete(id);
+      await PB_DeleteProduct(id);
       dispatch({ type: "deleteProductsSuccess", payload: id });
     } catch (error) {
       dispatch({ type: "error", payload: "Prodotto non cancellato!" });
@@ -37,7 +37,7 @@ export default function useProductsService() {
   const handleAddProduct = useCallback(async (p: Partial<Product>) => {
     dispatch({ type: "pending", payload: true });
     try {
-      const pRes = await PB_Add(p);
+      const pRes = await PB_AddProduct(p);
       dispatch({ type: "addProductsSuccess", payload: pRes });
     } catch (error) {
       dispatch({ type: "error", payload: "Prodotto non aggiunto!" });
@@ -47,7 +47,7 @@ export default function useProductsService() {
   const handleUpdateProduct = useCallback(async (p: Partial<Product>) => {
     dispatch({ type: "pending", payload: true });
     try {
-      const pRes = await PB_Update(p);
+      const pRes = await PB_UpdateProduct(p);
       dispatch({ type: "updateProductsSuccess", payload: pRes });
     } catch (error) {
       dispatch({ type: "error", payload: "Prodotto non aggiornato!" });

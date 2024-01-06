@@ -1,5 +1,13 @@
 import { Product } from "./Product";
 import { CartItem } from "./CartItem";
-import { OrderInfoType } from "./OrderForm";
+import { OrderForm } from "./OrderForm";
+import { OrderStatus } from "./OrderForm";
+import { Order } from "./Orders";
 
-export type { Product, CartItem, OrderInfoType };
+export type {
+  Product,
+  CartItem,
+  OrderForm as OrderInfoType,
+  OrderStatus,
+  Order,
+};

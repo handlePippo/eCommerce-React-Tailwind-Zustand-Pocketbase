@@ -1,11 +1,13 @@
 import React, { ChangeEvent, useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { OrderInfoType } from "../../Model/OrderForm";
+import { OrderForm, OrderStatusEnum } from "../../Model/OrderForm";
 import {
   selectCartTotalCost,
   selectCartList,
 } from "../../Services/Cart/cart.selectors";
 import { useCart } from "../../Services/Cart/useCart";
+import { useOrdersService } from "..";
+import { ClientResponseError } from "pocketbase";
 
 export const EMAIL_REGEX: RegExp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -17,6 +19,7 @@ export default function useCheckout() {
   const total = useCart(selectCartTotalCost);
   const resetCart = useCart((s) => s.resetCart);
   const order = useCart(selectCartList);
+  const { state, actions } = useOrdersService();
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
@@ -27,30 +30,32 @@ export default function useCheckout() {
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const orderInfo: OrderInfoType = {
+      const orderInfo: OrderForm = {
         user,
         order,
         total,
-        status: "pending",
+        status: OrderStatusEnum.Pending,
       };
-      console.log(orderInfo);
-      resetCart();
-      navigate("/thankyou");
+      actions.handleAddOrder(orderInfo).then((res) => {
+        if (!(res instanceof ClientResponseError)) {
+          navigate("/thankyou");
+          resetCart();
+        }
+      });
     },
-    [navigate, order, resetCart, total, user]
+    [navigate, order, actions, resetCart, total, user]
   );
 
   const isNameValid = user.name.length > 3;
-  const isSurnameValid = user.surname.length > 3;
   const isEmailValid = user.email.match(EMAIL_REGEX);
 
   const isValid = useMemo(
-    () => isNameValid && isSurnameValid && isEmailValid,
-    [isEmailValid, isNameValid, isSurnameValid]
+    () => isNameValid && isEmailValid,
+    [isEmailValid, isNameValid]
   );
 
   return {
-    validators: { isValid, isNameValid, isSurnameValid, isEmailValid },
+    validators: { isValid, isNameValid, isEmailValid },
     actions: {
       handleSubmit,
       handleChange,
@@ -58,5 +63,6 @@ export default function useCheckout() {
     user,
     dirty,
     total,
+    error: state.error,
   };
 }

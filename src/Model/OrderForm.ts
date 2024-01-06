@@ -1,12 +1,16 @@
-import { CartItem } from ".";
+import { CartItem } from "@/Model/";
 
 export type OrderStatus = "pending" | "done";
 
-export type UserType = { name: string; email: string };
+export type OrderUser = { name: string; email: string };
 
-export type OrderInfoType = {
+export enum OrderStatusEnum {
+  "Pending" = "pending",
+  "Done" = "done",
+}
+export type OrderForm = {
   status: OrderStatus;
-  user: UserType;
+  user: OrderUser;
   order: CartItem[];
   total: number;
 };

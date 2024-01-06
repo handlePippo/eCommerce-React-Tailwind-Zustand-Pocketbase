@@ -1,5 +1,5 @@
 export type InputProps = {
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type: string;
   value: string | number;
   placeholder: string;

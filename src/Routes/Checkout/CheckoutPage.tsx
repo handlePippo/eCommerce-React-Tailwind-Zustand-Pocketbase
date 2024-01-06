@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import { Button } from "@/Components/";
 import useCheckout from "../../Hooks/useCheckout";
+import ApiError from "../../Errors/ApiError";
 
 export default function CheckoutPage() {
-  const { validators, actions, user, dirty, total } = useCheckout();
-  const { isEmailValid, isNameValid, isSurnameValid, isValid } = validators;
+  const { validators, actions, user, dirty, total, error } = useCheckout();
+  const { isEmailValid, isNameValid, isValid } = validators;
   const { handleChange, handleSubmit } = actions;
 
   return (
@@ -23,15 +24,6 @@ export default function CheckoutPage() {
           value={user.name}
           onChange={handleChange}
         />
-        Your surname:
-        <input
-          className={clsx({ "error": !isSurnameValid && dirty })}
-          type='text'
-          name='surname'
-          placeholder='Your surname'
-          value={user.surname}
-          onChange={handleChange}
-        />
         Your email:
         <input
           className={clsx({ "error": !isEmailValid && dirty })}
@@ -48,6 +40,7 @@ export default function CheckoutPage() {
           name='Confirm'
         />
       </form>
+      {error && <ApiError error='Errore, ordine non emesso!' />}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export type CMSProductListPropsType = {
   onDeleteProduct: (id: string) => void;
 };
 
-export default function CMSProductList(props: CMSProductListPropsType) {
+export default function PCMSProductList(props: CMSProductListPropsType) {
   const handleDelete = useCallback(
     (p: Product, e: React.MouseEvent<HTMLElement, MouseEvent>) => {
       e.stopPropagation();

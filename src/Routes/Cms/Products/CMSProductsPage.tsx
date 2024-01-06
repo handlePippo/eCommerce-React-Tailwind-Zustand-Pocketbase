@@ -15,10 +15,10 @@ export default function CMSProductPage() {
 
   return (
     <div>
-      <h1 className='title'>CMS</h1>
-      <hr className='my-8' />
       {state.pending && <Loader />}
       {state.error && <ApiError error={state.error} />}
+      <h1 className='title'>CMS</h1>
+      <hr className='my-8' />
       <div className='mt-12'>
         <CMSProductForm
           activeItem={state.activeItem}
